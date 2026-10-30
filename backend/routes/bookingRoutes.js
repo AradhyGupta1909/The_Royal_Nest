@@ -1,0 +1,10 @@
+const express = require("express");
+const router = express.Router();
+const { createBooking, getMyBookings, getAllBookings, cancelBooking, getStats } = require("../controllers/bookingController");
+const { protect, adminOnly } = require("../middleware/auth");
+router.post("/", protect, createBooking);
+router.get("/my", protect, getMyBookings);
+router.get("/stats", protect, adminOnly, getStats);
+router.get("/", protect, adminOnly, getAllBookings);
+router.put("/:id/cancel", protect, cancelBooking);
+module.exports = router;

@@ -1,0 +1,11 @@
+const express = require("express");
+const router = express.Router();
+const { getRooms, getRoomById, suggestRooms, createRoom, updateRoom, deleteRoom } = require("../controllers/roomController");
+const { protect, adminOnly } = require("../middleware/auth");
+router.get("/", getRooms);
+router.get("/suggest", suggestRooms);
+router.get("/:id", getRoomById);
+router.post("/", protect, adminOnly, createRoom);
+router.put("/:id", protect, adminOnly, updateRoom);
+router.delete("/:id", protect, adminOnly, deleteRoom);
+module.exports = router;

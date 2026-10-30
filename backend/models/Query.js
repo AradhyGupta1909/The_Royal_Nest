@@ -8,11 +8,8 @@ const querySchema = new mongoose.Schema(
     subject: { type: String, required: true },
     message: { type: String, required: true },
     user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-    status: { 
-      type: String, 
-      enum: ["open", "in-progress", "resolved"], 
-      default: "open" 
-    },
+    room: { type: mongoose.Schema.Types.ObjectId, ref: "Room" },
+    status: { type: String, enum: ["open", "in-progress", "resolved"], default: "open" },
     adminReply: { type: String },
   },
   { timestamps: true }
